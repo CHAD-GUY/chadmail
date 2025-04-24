@@ -280,8 +280,7 @@ export function EmailList() {
           <div className="flex gap-2 items-end">
             <h3 className="text-lg font-medium">Inbox</h3>
             <p className="text-sm mb-[2px] text-muted-foreground">
-              You have 1 unread messages
-              {/* You have {emails.filter((e) => !e.read).length} unread messages */}
+              You have {emails.filter((e) => !e.read).length} unread messages
             </p>
           </div>
         </div>

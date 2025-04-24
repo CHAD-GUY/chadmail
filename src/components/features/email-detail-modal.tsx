@@ -86,20 +86,19 @@ export function EmailDetailModal({
 
   // Sample email content - in a real app, this would come from the server
   const emailContent = `
- <p>Hey there,</p>
-<p>
-  Thanks for using <strong>Chadmail</strong> — the only mailing app that makes your inbox look like a runway.<br/>
-  <br/>
-  This is just a sample message, but if it were real, it would include spicy memes, legendary GIFs, and attachments that slap harder than your Monday coffee.<br/>
-  <br/>
-  People who use Chadmail don’t just send emails... they transmit pure swagger.<br/>
-  Certified CHADS. Ultra cool. Unbothered. Dripping in productivity. 😎💼🔥
-</p><br/>
-<p>
-  Big digital hug,<br/>
-  The ridiculously cool Chadmail Team 💌🕶️
-</p>
-
+    <p>Hey there,</p>
+    <p>
+      Thanks for using <strong>Chadmail</strong> — the only mailing app that makes your inbox look like a runway.<br/>
+      <br/>
+      This is just a sample message, but if it were real, it would include spicy memes, legendary GIFs, and attachments that slap harder than your Monday coffee.<br/>
+      <br/>
+      People who use Chadmail don’t just send emails... they transmit pure swagger.<br/>
+      Certified CHADS. Ultra cool. Unbothered. Dripping in productivity. 😎💼🔥
+    </p><br/>
+    <p>
+      Big digital hug,<br/>
+      The ridiculously cool Chadmail Team 💌🕶️
+    </p>
   `;
 
   return (

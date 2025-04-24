@@ -87,7 +87,7 @@ export function EmailItem({
           onCheckedChange={onSelectAction}
           onClick={(e) => e.stopPropagation()}
           aria-label={`Select email from ${email.from}`}
-          className="translate-y-[1px] cursor-pointer"
+          className="translate-y-[1px] cursor-pointer transition-all duration-100"
         />
       </motion.div>
 

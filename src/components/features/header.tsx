@@ -20,9 +20,9 @@ export function Header() {
     <header className="sticky top-0 z-10 flex h-16 items-center bg-background-color p-4 md:px-6">
       <div className="flex items-center gap-2 md:gap-4">
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className="md:hidden"
+          className="md:hidden cursor-pointer"
           onClick={toggleSidebar}
         >
           <Menu className="h-5 w-5" />
