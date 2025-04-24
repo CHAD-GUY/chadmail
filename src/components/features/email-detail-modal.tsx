@@ -13,7 +13,7 @@ import {
   Paperclip,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn, getWorkspaceColor } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -28,19 +28,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-interface Email {
-  id: string;
-  read: boolean;
-  starred: boolean;
-  from: string;
-  fromEmail: string;
-  subject: string;
-  preview: string;
-  time: string;
-  workspace: string;
-  hasAttachment: boolean;
-}
+import type { Email } from "@/types/email";
 
 interface EmailDetailModalProps {
   email: Email;
@@ -67,21 +55,6 @@ export function EmailDetailModal({
 
   const toggleStar = () => {
     setIsStarred(!isStarred);
-  };
-
-  const getWorkspaceColor = (workspace: string) => {
-    switch (workspace) {
-      case "Personal":
-        return "bg-blue-500";
-      case "Work":
-        return "bg-green-500";
-      case "Projects":
-        return "bg-yellow-500";
-      case "Newsletters":
-        return "bg-purple-500";
-      default:
-        return "bg-gray-500";
-    }
   };
 
   // Sample email content - in a real app, this would come from the server

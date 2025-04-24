@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, MoreHorizontal } from "lucide-react";
+import { Fullscreen, Menu, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -12,9 +12,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSidebar } from "@/components/ui/sidebar";
+import { useEmailStore } from "@/store/email-store";
 
 export function Header() {
   const { toggleSidebar } = useSidebar();
+  const { setViewMode } = useEmailStore();
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center bg-background-color p-4 md:px-6">
@@ -33,6 +35,27 @@ export function Header() {
         </div>
       </div>
       <div className="ml-auto flex items-center gap-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon" className="cursor-pointer">
+              <Fullscreen className="h-5 w-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setViewMode("center")}
+            >
+              Center
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => setViewMode("right")}
+            >
+              Right
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="cursor-pointer">

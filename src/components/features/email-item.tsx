@@ -4,26 +4,16 @@ import type React from "react";
 
 import { useState } from "react";
 import { Star, Paperclip } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getWorkspaceColor } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
-import { motion } from "framer-motion";
-
-interface Email {
-  id: string;
-  read: boolean;
-  starred: boolean;
-  from: string;
-  fromEmail: string;
-  subject: string;
-  preview: string;
-  time: string;
-  workspace: string;
-  hasAttachment: boolean;
-}
+import { AnimatePresence, motion } from "framer-motion";
+import { useEmailStore } from "@/store/email-store";
+import type { Email } from "@/types/email";
 
 interface EmailItemProps {
   email: Email;
   isSelected: boolean;
+  isModalOpen: boolean;
   onSelectAction: () => void;
   onClickAction: () => void;
 }
@@ -31,30 +21,17 @@ interface EmailItemProps {
 export function EmailItem({
   email,
   isSelected,
+  isModalOpen,
   onSelectAction,
   onClickAction,
 }: EmailItemProps) {
   const [isStarred, setIsStarred] = useState(email.starred);
   const [isHovering, setIsHovering] = useState(false);
+  const { viewMode } = useEmailStore();
 
   const toggleStar = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsStarred(!isStarred);
-  };
-
-  const getWorkspaceColor = (workspace: string) => {
-    switch (workspace) {
-      case "Personal":
-        return "bg-blue-500";
-      case "Work":
-        return "bg-green-500";
-      case "Projects":
-        return "bg-yellow-500";
-      case "Newsletters":
-        return "bg-purple-500";
-      default:
-        return "bg-gray-500";
-    }
   };
 
   const handleEmailClick = (e: React.MouseEvent) => {
@@ -65,6 +42,9 @@ export function EmailItem({
       onClickAction();
     }
   };
+
+  console.log(isModalOpen);
+  console.log(viewMode);
 
   return (
     <div
@@ -125,33 +105,73 @@ export function EmailItem({
             )}
           >
             {email.from}
+            <AnimatePresence mode="wait">
+              {viewMode === "right" && isModalOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <span
+                    className={cn(
+                      "text-sm block mt-1",
+                      !email.read
+                        ? "font-semibold"
+                        : "font-normal text-gray-600"
+                    )}
+                  >
+                    {email.subject}
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          <div className="flex flex-1 items-center gap-3 overflow-hidden">
-            <div className="flex-1 truncate">
-              <span
-                className={cn(
-                  "text-sm",
-                  !email.read ? "font-semibold" : "font-normal text-gray-600"
-                )}
-              >
-                {email.subject}
-              </span>
-            </div>
+          <div className="flex flex-1 items-center gap-3 overflow-hidden justify-end">
+            <AnimatePresence mode="wait">
+              {(viewMode === "right" && !isModalOpen) ||
+              viewMode === "center" ? (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex-1 truncate overflow-hidden"
+                >
+                  <span
+                    className={cn(
+                      "text-sm block",
+                      !email.read
+                        ? "font-semibold"
+                        : "font-normal text-gray-600"
+                    )}
+                  >
+                    {email.subject}
+                  </span>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <span
                   className={cn(
-                    "h-2 w-2 rounded-full",
+                    "h-1 w-1 rounded-full",
                     getWorkspaceColor(email.workspace)
                   )}
                 />
-                <span className="hidden text-xs text-muted-foreground md:inline-block">
+                <span
+                  className={`text-xs ${
+                    !email.read
+                      ? "text-black font-medium"
+                      : "text-muted-foreground"
+                  }`}
+                >
                   {email.workspace}
                 </span>
               </div>
-
               {email.hasAttachment && (
                 <Paperclip className="h-4 w-4 text-muted-foreground" />
               )}
