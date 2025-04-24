@@ -43,7 +43,6 @@ export function EmailDetailModal({
 }: EmailDetailModalProps) {
   const [isStarred, setIsStarred] = useState(email.starred);
 
-  // Close on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCloseAction();
@@ -57,7 +56,6 @@ export function EmailDetailModal({
     setIsStarred(!isStarred);
   };
 
-  // Sample email content - in a real app, this would come from the server
   const emailContent = `
     <p>Hey there,</p>
     <p>
