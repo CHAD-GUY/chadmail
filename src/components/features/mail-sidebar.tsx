@@ -17,6 +17,7 @@ import {
   SquarePen,
   Check,
   ChevronDown,
+  Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -397,9 +398,14 @@ export function MailSidebar() {
         </div>
       </SidebarContent>
       <SidebarFooter className="p-4">
-        <div className="text-xs text-muted-foreground">
-          <p>Footer</p>
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );

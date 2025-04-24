@@ -56,19 +56,16 @@ export function Header() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="h-8 w-8 cursor-pointer">
-              <AvatarImage
-                src="/placeholder.svg?height=32&width=32"
-                alt="User"
-              />
-              <AvatarFallback>US</AvatarFallback>
+              <AvatarImage src="/avatars/alejo-pequeno.jpg" alt="User" />
+              <AvatarFallback>AP</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">User Name</p>
+                <p className="text-sm font-medium">Alejo Pequeño</p>
                 <p className="text-xs text-muted-foreground">
-                  user@example.com
+                  alejopequeno25@gmail.com
                 </p>
               </div>
             </DropdownMenuLabel>
