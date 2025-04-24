@@ -17,7 +17,7 @@ export function Header() {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center border-b bg-background px-4 md:px-6">
+    <header className="sticky top-0 z-10 flex h-16 items-center bg-background-color p-4 md:px-6">
       <div className="flex items-center gap-2 md:gap-4">
         <Button
           variant="ghost"
@@ -29,22 +29,28 @@ export function Header() {
           <span className="sr-only">Toggle sidebar</span>
         </Button>
         <div className="flex items-center gap-2">
-          <span className="text-xl font-medium tracking-tight">NotionMail</span>
+          <span className="text-xl font-medium tracking-tight">Chadmail</span>
         </div>
       </div>
       <div className="ml-auto flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
+            <Button variant="outline" size="icon" className="cursor-pointer">
               <MoreHorizontal className="h-5 w-5" />
               <span className="sr-only">More</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Help & feedback</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Help & feedback
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Keyboard shortcuts</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Keyboard shortcuts
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
@@ -67,8 +73,12 @@ export function Header() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-red-500 hover:!text-red-500 cursor-pointer">
+              Sign out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
