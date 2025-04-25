@@ -43,9 +43,6 @@ export function EmailItem({
     }
   };
 
-  console.log(isModalOpen);
-  console.log(viewMode);
-
   return (
     <div
       className="flex items-center gap-3 pl-3"
