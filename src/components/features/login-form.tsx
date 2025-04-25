@@ -254,7 +254,7 @@ export const LoginForm = () => {
         <p className="text-muted-foreground">
           Don&apos;t have an account?{" "}
           <a
-            href="/register"
+            href="/auth/signup"
             className="text-primary font-medium hover:underline"
           >
             Sign Up

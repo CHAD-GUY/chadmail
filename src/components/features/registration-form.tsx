@@ -25,6 +25,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 const formSchema = z
   .object({
@@ -403,9 +404,12 @@ export const RegistrationForm = () => {
       <CardFooter className="flex justify-center text-sm">
         <p className="text-muted-foreground">
           Already have an account?{" "}
-          <a href="/login" className="text-primary font-medium hover:underline">
+          <Link
+            href="/auth/login"
+            className="text-primary font-medium hover:underline"
+          >
             Sign In
-          </a>
+          </Link>
         </p>
       </CardFooter>
     </Card>
