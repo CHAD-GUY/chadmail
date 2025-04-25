@@ -76,6 +76,8 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --dark-general: #111;
+  --dark-card: #141414;
 }
 
 .dark {
@@ -121,6 +123,14 @@
   }
 }
 
-.bg-background-color {
-  background-color: #f8fafb;
+.bg-sidebar {
+  @apply bg-[var(--sidebar)] dark:bg-[var(--dark-general)];
+}
+
+.bg-card {
+  @apply bg-[var(--card)] dark:bg-[var(--dark-card)];
+}
+
+.bg-popover {
+  @apply bg-[var(--popover)] dark:bg-[var(--dark-card)];
 }

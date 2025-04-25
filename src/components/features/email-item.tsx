@@ -73,8 +73,8 @@ export function EmailItem({
 
       <div
         className={cn(
-          "group flex cursor-pointer flex-1 items-center gap-3 rounded-md border border-transparent p-2 px-3 transition-colors hover:bg-accent/50 hover:border-border",
-          !email.read && "bg-accent/50",
+          "group flex cursor-pointer flex-1 items-center gap-3 rounded-md border border-transparent p-2 px-3 transition-colors hover:bg-accent/50 hover:border-border dark:hover:bg-[#1e1e1ece]",
+          !email.read && "bg-accent/50 dark:bg-[#1e1e1e]",
           isSelected && "border-border bg-accent/30",
           isHovering && "bg-accent/70 border-border"
         )}
@@ -165,7 +165,7 @@ export function EmailItem({
                 <span
                   className={`text-xs ${
                     !email.read
-                      ? "text-black font-medium"
+                      ? "text-black dark:text-white font-medium"
                       : "text-muted-foreground"
                   }`}
                 >

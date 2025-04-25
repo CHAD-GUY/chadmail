@@ -36,6 +36,22 @@ interface EmailDetailModalProps {
   onCloseAction: () => void;
 }
 
+const emailContent = `
+<p>Hey there,</p>
+<p>
+  Thanks for using <strong>Chadmail</strong> — the only mailing app that makes your inbox look like a runway.<br/>
+  <br/>
+  This is just a sample message, but if it were real, it would include spicy memes, legendary GIFs, and attachments that slap harder than your Monday coffee.<br/>
+  <br/>
+  People who use Chadmail don't just send emails... they transmit pure swagger.<br/>
+  Certified CHADS. Ultra cool. Unbothered. Dripping in productivity. 😎💼🔥
+</p><br/>
+<p>
+  Big digital hug,<br/>
+  The ridiculously cool Chadmail Team 💌🕶️
+</p>
+`;
+
 export function EmailDetailModal({
   email,
   isOpen,
@@ -56,22 +72,6 @@ export function EmailDetailModal({
     setIsStarred(!isStarred);
   };
 
-  const emailContent = `
-    <p>Hey there,</p>
-    <p>
-      Thanks for using <strong>Chadmail</strong> — the only mailing app that makes your inbox look like a runway.<br/>
-      <br/>
-      This is just a sample message, but if it were real, it would include spicy memes, legendary GIFs, and attachments that slap harder than your Monday coffee.<br/>
-      <br/>
-      People who use Chadmail don’t just send emails... they transmit pure swagger.<br/>
-      Certified CHADS. Ultra cool. Unbothered. Dripping in productivity. 😎💼🔥
-    </p><br/>
-    <p>
-      Big digital hug,<br/>
-      The ridiculously cool Chadmail Team 💌🕶️
-    </p>
-  `;
-
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
@@ -90,6 +90,7 @@ export function EmailDetailModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             key="modal-container"
+            onClick={onCloseAction}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
@@ -105,14 +106,17 @@ export function EmailDetailModal({
               onClick={(e) => e.stopPropagation()}
               key="modal-content"
             >
-              <Card className="h-full overflow-hidden flex flex-col p-0 gap-0">
+              <Card
+                className="h-full overflow-hidden flex flex-col p-0 gap-0"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <CardHeader className="!p-4 border-b gap-0">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-xl font-semibold">
                       {email.subject}
                     </CardTitle>
                     <Button
-                      variant="ghost"
+                      variant="outline"
                       size="icon"
                       onClick={onCloseAction}
                       className="cursor-pointer"

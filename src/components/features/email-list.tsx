@@ -8,7 +8,7 @@ import { CardContent } from "../ui/card";
 import { EmailListHeader } from "./email-list-header";
 import { emails } from "@/constants";
 import { useEmailStore } from "@/store/email-store";
-import { AnimatePresence, motion } from "framer-motion";
+import { EmailDetailRightbar } from "./email-detail-rightbar";
 
 export function EmailList() {
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
@@ -76,49 +76,12 @@ export function EmailList() {
         </CardContent>
       </Card>
 
-      <AnimatePresence mode="wait">
-        {viewMode === "right" && selectedEmail && isModalOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: 20, width: 0 }}
-            animate={{ opacity: 1, x: 0, width: "50%" }}
-            exit={{ opacity: 0, x: 20, width: 0 }}
-            transition={{ duration: 0.3 }}
-            className="ml-4"
-          >
-            <Card className="h-full relative">
-              <button
-                onClick={handleCloseDetail}
-                className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200 transition-colors"
-                aria-label="Cerrar detalles"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-              <CardHeader>
-                <h2 className="text-xl font-bold">{selectedEmail.subject}</h2>
-                <p className="text-sm text-gray-500">
-                  From: {selectedEmail.from}
-                </p>
-              </CardHeader>
-              <CardContent>
-                <div>{selectedEmail.preview}</div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <EmailDetailRightbar
+        viewMode={viewMode}
+        selectedEmail={selectedEmail!}
+        isModalOpen={isModalOpen}
+        handleCloseDetail={handleCloseDetail}
+      />
     </>
   );
 }

@@ -13,14 +13,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useEmailStore } from "@/store/email-store";
+import { Mailbox } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   const { toggleSidebar } = useSidebar();
   const { setViewMode } = useEmailStore();
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center bg-background-color p-4 md:px-6">
-      <div className="flex items-center gap-2 md:gap-4">
+    <header className="sticky top-0 z-10 flex h-16 items-center p-4 md:px-6">
+      <div className="md:hidden items-center gap-2 flex md:gap-4">
         <Button
           variant="outline"
           size="icon"
@@ -31,10 +33,13 @@ export function Header() {
           <span className="sr-only">Toggle sidebar</span>
         </Button>
         <div className="flex items-center gap-2">
-          <span className="text-xl font-medium tracking-tight">Chadmail</span>
+          <Mailbox className="h-6 w-6" />
+          <span className="text-lg font-semibold">Chadmail</span>
         </div>
       </div>
-      <div className="ml-auto flex items-center gap-4">
+      <div className="ml-auto flex items-center gap-2">
+        <ThemeToggle />
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="cursor-pointer">

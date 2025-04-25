@@ -222,7 +222,7 @@ export function MailSidebar() {
               >
                 <DropdownMenuTrigger asChild>
                   <div
-                    className="rounded-md scale-75 hover:cursor-pointer bg-secondary h-8 w-8 p-1 flex items-center justify-center border border-grayColor transition-all duration-200 hover:bg-gray-200"
+                    className="rounded-md scale-75 hover:cursor-pointer bg-secondary h-8 w-8 p-1 flex items-center justify-center border border-grayColor transition-all duration-200 dark:bg-[#191919] dark:hover:bg-[#1e1e1e]"
                     onMouseEnter={() => {
                       setIsButtonHovered(true);
                       if (buttonPosition.item) {
@@ -257,7 +257,7 @@ export function MailSidebar() {
                   <div
                     className={cn(
                       "relative",
-                      hoveredItem === item.id && "bg-[#F1F5F9] rounded-md"
+                      hoveredItem === item.id && "rounded-md"
                     )}
                     onMouseEnter={(e) => {
                       const rect = e.currentTarget.getBoundingClientRect();
@@ -286,9 +286,9 @@ export function MailSidebar() {
                       tooltip={item.label}
                       onClick={() => setActiveItem(item.id)}
                       className={cn(
-                        "flex w-full items-center gap-2 justify-between border border-transparent text-grayColor rounded-md px-3 py-2 transition-all duration-200 cursor-pointer",
+                        "flex w-full items-center gap-2 justify-between border border-transparent rounded-md px-3 py-2 transition-all duration-200 cursor-pointer dark:hover:bg-[#191919]",
                         activeItem === item.id
-                          ? "bg-[#EAEAE9] text-darkColor border-grayColor font-medium"
+                          ? "border-gray-200 dark:border-[#414141] font-medium dark:bg-[#1e1e1e]"
                           : "opacity-85"
                       )}
                     >
