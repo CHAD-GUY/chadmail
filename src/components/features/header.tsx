@@ -1,6 +1,6 @@
 "use client";
 
-import { Fullscreen, Menu, MoreHorizontal } from "lucide-react";
+import { Fullscreen, Menu, MoreHorizontal, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -39,7 +39,9 @@ export function Header() {
       </div>
       <div className="ml-auto flex items-center gap-2">
         <ThemeToggle />
-
+        <Button variant="outline" size="icon" className="cursor-pointer">
+          <Sparkles className="h-5 w-5" />
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="cursor-pointer">

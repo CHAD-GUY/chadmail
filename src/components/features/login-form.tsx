@@ -22,6 +22,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Enter a valid email" }),
@@ -36,6 +37,7 @@ export const LoginForm = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [isAppleLoading, setIsAppleLoading] = useState(false);
   const [isMicrosoftLoading, setIsMicrosoftLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,12 +49,33 @@ export const LoginForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
+    setError("");
+
     try {
       console.log(values);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      router.push("/dashboard");
+      const result = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+
+      if (!result) {
+        setError("Something went wrong. Please try again.");
+        return;
+      }
+
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
+      if (result.ok) {
+        router.push("/dashboard");
+        router.refresh();
+      }
     } catch (error) {
       console.error("Login failed:", error);
+      setError("An unexpected error occurred");
     } finally {
       setIsLoading(false);
     }
@@ -159,6 +182,7 @@ export const LoginForm = () => {
                 "Sign In"
               )}
             </Button>
+            {error && <p className="text-red-500">{error}</p>}
           </form>
         </Form>
 

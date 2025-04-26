@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEmailStore } from "@/store/email-store";
 import type { Email } from "@/types/email";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface EmailItemProps {
   email: Email;
@@ -28,6 +29,7 @@ export function EmailItem({
   const [isStarred, setIsStarred] = useState(email.starred);
   const [isHovering, setIsHovering] = useState(false);
   const { viewMode } = useEmailStore();
+  const isMobile = useIsMobile();
 
   const toggleStar = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -72,8 +74,8 @@ export function EmailItem({
         className={cn(
           "group flex cursor-pointer flex-1 items-center gap-3 rounded-md border border-transparent p-2 px-3 transition-colors hover:bg-accent/50 hover:border-border dark:hover:bg-[#1e1e1ece]",
           !email.read && "bg-accent/50 dark:bg-[#1e1e1e]",
-          isSelected && "border-border bg-accent/30",
-          isHovering && "bg-accent/70 border-border"
+          isSelected && "border-border bg-accent/30 dark:bg-[#191919]",
+          isHovering && "bg-accent/70 border-border dark:bg-[#1e1e1ece]"
         )}
         onClick={handleEmailClick}
       >
@@ -94,7 +96,7 @@ export function EmailItem({
           </button>
         </div>
 
-        <div className="flex flex-1 items-center gap-3 overflow-hidden">
+        <div className="flex flex-1 items-center gap-3 flex-wrap overflow-hidden">
           <div
             className={cn(
               "min-w-[180px] max-w-[180px] truncate text-sm",
@@ -103,7 +105,7 @@ export function EmailItem({
           >
             {email.from}
             <AnimatePresence mode="wait">
-              {viewMode === "right" && isModalOpen && (
+              {(isMobile || (isModalOpen && viewMode === "right")) && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -113,7 +115,7 @@ export function EmailItem({
                 >
                   <span
                     className={cn(
-                      "text-sm block mt-1",
+                      "text-sm block mt-1 truncate",
                       !email.read
                         ? "font-semibold"
                         : "font-normal text-gray-600"
@@ -128,46 +130,38 @@ export function EmailItem({
 
           <div className="flex flex-1 items-center gap-3 overflow-hidden justify-end">
             <AnimatePresence mode="wait">
-              {(viewMode === "right" && !isModalOpen) ||
-              viewMode === "center" ? (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex-1 truncate overflow-hidden"
-                >
-                  <span
-                    className={cn(
-                      "text-sm block",
-                      !email.read
-                        ? "font-semibold"
-                        : "font-normal text-gray-600"
-                    )}
+              {!isMobile &&
+                ((viewMode === "right" && !isModalOpen) ||
+                  viewMode === "center") && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex-1 truncate overflow-hidden"
                   >
-                    {email.subject}
-                  </span>
-                </motion.div>
-              ) : null}
+                    <span
+                      className={cn(
+                        "text-sm block truncate",
+                        !email.read
+                          ? "font-semibold"
+                          : "font-normal text-gray-600"
+                      )}
+                    >
+                      {email.subject}
+                    </span>
+                  </motion.div>
+                )}
             </AnimatePresence>
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1">
                 <span
                   className={cn(
-                    "h-1 w-1 rounded-full",
+                    "h-1.5 w-1.5 rounded-full",
                     getWorkspaceColor(email.workspace)
                   )}
                 />
-                <span
-                  className={`text-xs ${
-                    !email.read
-                      ? "text-black dark:text-white font-medium"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {email.workspace}
-                </span>
               </div>
               {email.hasAttachment && (
                 <Paperclip className="h-4 w-4 text-muted-foreground" />

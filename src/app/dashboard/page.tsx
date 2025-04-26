@@ -8,6 +8,7 @@ export default function Dashboard() {
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <MailSidebar />
+
         <main className="flex-1 overflow-y-auto">
           <div className="p-4 md:pl-0 pt-0 flex h-full">
             <EmailList />

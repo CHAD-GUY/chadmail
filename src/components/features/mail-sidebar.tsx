@@ -316,7 +316,7 @@ export function MailSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer"
+                className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]"
                 onClick={() => toggleLabel("studies")}
               >
                 {expandedLabels.includes("studies") ? (
@@ -337,13 +337,13 @@ export function MailSidebar() {
                   style={{ overflow: "hidden" }}
                 >
                   <SidebarMenuItem>
-                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer">
+                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
                       <CornerDownRight className="h-4 w-4 text-grayColor" />
                       <span>Prisma</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer">
+                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
                       <CornerDownRight className="h-4 w-4 text-grayColor" />
                       <span>React</span>
                     </SidebarMenuButton>
@@ -353,7 +353,7 @@ export function MailSidebar() {
             </AnimatePresence>
             <SidebarMenuItem>
               <SidebarMenuButton
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer"
+                className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]"
                 onClick={() => toggleLabel("work")}
               >
                 {expandedLabels.includes("work") ? (
@@ -374,13 +374,13 @@ export function MailSidebar() {
                   style={{ overflow: "hidden" }}
                 >
                   <SidebarMenuItem>
-                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer">
+                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
                       <CornerDownRight className="h-4 w-4 text-grayColor" />
                       <span>Projects</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer">
+                    <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 pl-8 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
                       <CornerDownRight className="h-4 w-4 text-grayColor" />
                       <span>Meetings</span>
                     </SidebarMenuButton>
@@ -389,7 +389,7 @@ export function MailSidebar() {
               )}
             </AnimatePresence>
             <SidebarMenuItem>
-              <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-muted-foreground cursor-pointer">
+              <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-muted-foreground dark:text-[#a5a5a5] cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
                 <Plus className="h-4 w-4" />
                 <span>Add folder</span>
               </SidebarMenuButton>
@@ -400,7 +400,7 @@ export function MailSidebar() {
       <SidebarFooter className="p-4">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer">
+            <SidebarMenuButton className="flex w-full items-center gap-2 rounded-md px-3 py-2 cursor-pointer transition-all duration-200 dark:hover:bg-[#191919]">
               <Settings className="h-4 w-4" />
               <span>Settings</span>
             </SidebarMenuButton>

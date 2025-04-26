@@ -9,12 +9,14 @@ import { EmailListHeader } from "./email-list-header";
 import { emails } from "@/constants";
 import { useEmailStore } from "@/store/email-store";
 import { EmailDetailRightbar } from "./email-detail-rightbar";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function EmailList() {
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
   const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { viewMode } = useEmailStore();
+  const isMobile = useIsMobile();
 
   const toggleSelectEmail = (id: string) => {
     if (selectedEmails.includes(id)) {
@@ -63,7 +65,7 @@ export function EmailList() {
               ))}
             </div>
 
-            {viewMode === "center" && selectedEmail && (
+            {(isMobile || viewMode === "center") && selectedEmail && (
               <EmailDetailModal
                 email={selectedEmail}
                 isOpen={isModalOpen}
@@ -76,12 +78,14 @@ export function EmailList() {
         </CardContent>
       </Card>
 
-      <EmailDetailRightbar
-        viewMode={viewMode}
-        selectedEmail={selectedEmail!}
-        isModalOpen={isModalOpen}
-        handleCloseDetail={handleCloseDetail}
-      />
+      {!isMobile && (
+        <EmailDetailRightbar
+          viewMode={viewMode}
+          selectedEmail={selectedEmail!}
+          isModalOpen={isModalOpen}
+          handleCloseDetail={handleCloseDetail}
+        />
+      )}
     </>
   );
 }
